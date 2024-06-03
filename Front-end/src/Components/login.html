@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Login</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f4f4f4;
+    }
+    .container {
+        max-width: 400px;
+        margin: 50px auto;
+        padding: 20px;
+        background-color: #fff;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    .container h2 {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+    .form-group {
+        margin-bottom: 20px;
+    }
+    .form-group label {
+        display: block;
+        margin-bottom: 5px;
+    }
+    .form-group input {
+        width: 100%;
+        padding: 10px;
+        font-size: 16px;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+    }
+    .form-group input[type="submit"] {
+        background-color: #007bff;
+        color: #fff;
+        cursor: pointer;
+    }
+</style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Login</h2>
+    <form action="#" method="post">
+        <div class="form-group">
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+        </div>
+        <div class="form-group">
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+        </div>
+        <div class="form-group">
+            <input type="button" value="Login" onclick="Login()">
+        </div>
+    </form>
+</div>
+
+</body>
+</html>
+
+<script type="text/javascript">
+    function Login() {
+        var email = $("#email").val();
+        var password = $("#password").val();
+    
+        // Here you can perform any additional validation before submitting the form
+        // For example, you can check if the email is valid or if the password meets certain criteria
+        
+        // After validation, you can send the data to the server for processing
+        $.ajax({
+            url: "http://127.0.0.1:5000/login", // Replace this with your actual server endpoint
+            type: "POST", // Assuming you want to send data via POST method
+            contentType: "application/json", 
+            data: JSON.stringify({
+                email: email,
+                password: password
+             }),
+            success: function(data) {
+            if (data.message === "OK") {
+                var email = data.email;
+                sessionStorage.setItem("email", email); // Store email in session storage
+                window.location.href = "index.html"; // Redirect to index.html
+            }
+        },
+            error: function(xhr, status, error) {
+                console.error("Error:", error);
+            }
+        });
+    }
+    </script>

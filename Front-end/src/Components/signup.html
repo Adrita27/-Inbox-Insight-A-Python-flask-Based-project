@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<title>Sign Up</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f4f4f4;
+    }
+    .container {
+        max-width: 400px;
+        margin: 50px auto;
+        padding: 20px;
+        background-color: #fff;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    .container h2 {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+    .form-group {
+        margin-bottom: 20px;
+    }
+    .form-group label {
+        display: block;
+        margin-bottom: 5px;
+    }
+    .form-group input {
+        width: 100%;
+        padding: 10px;
+        font-size: 16px;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+    }
+    .form-group input[type="submit"] {
+        background-color: #007bff;
+        color: #fff;
+        cursor: pointer;
+    }
+</style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Sign Up</h2>
+    <form action="#" method="post">
+        <div class="form-group">
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+        </div>
+        <div class="form-group">
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+        </div>
+        <div class="form-group">
+            <input type="button" value="Sign Up" onclick="Signup()">
+        </div>
+    </form>
+</div>
+
+<script type="text/javascript">
+function Signup() {
+    var email = $("#email").val();
+    var password = $("#password").val();
+    console.log(email);
+    console.log(password);
+
+    $.ajax({
+        url: "http://127.0.0.1:5000/signup", // Replace this with your actual server endpoint
+        type: "POST", // Assuming you want to send data via POST method
+        contentType: "application/json", 
+        data: JSON.stringify({
+            email: email,
+            password: password
+        }),
+        success: function(data) {
+            if(data.message === "OK")
+            {
+                alert("Successful")
+                console.log("Signup successful");
+                window.location.href = "login.html"; // Redirect to index.html
+
+            }
+            else
+            {
+                alert("Invalid operation");
+            }
+        },
+        error: function(xhr, status, error) {
+            console.error("Error:", error);
+        }
+    });
+}
+</script>
+
+</body>
+</html>

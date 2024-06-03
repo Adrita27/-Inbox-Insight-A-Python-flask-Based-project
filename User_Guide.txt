@@ -1,0 +1,19 @@
+instruction to use inbox insight
+
+1. enable imap from gmail
+	-> link: https://mail.google.com/mail/u/0/#settings/fwdandpop
+2. Create a app password: 
+	-> link: https://myaccount.google.com/apppasswords
+
+by creating an app password now signin with your email.
+and the password provided by the app password.
+example:
+email: bushra420@gmail.com
+password: xyz t20 bxcq (make sure space exist between passwords.)
+
+
+
+to start the project
+
+1. open command prompt in the frontend -> npm run dev
+2. open command prompt in the backend -> python Api.py
